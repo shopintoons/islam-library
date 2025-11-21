@@ -1,4 +1,5 @@
 let books = [];
+let currentCategoryId = null;
 
 // Tes 3 catégories
 const categories = [
@@ -47,14 +48,22 @@ function renderCategories() {
 
 // Ouvrir une catégorie : afficher les livres dessous
 function openCategory(catId) {
+  currentCategoryId = catId;
+
   const cat = categories.find(c => c.id === catId);
   const section = document.getElementById("booksSection");
   const titleEl = document.getElementById("booksTitle");
+  const searchInput = document.getElementById("bookSearchInput");
 
   const filtered = books.filter(b => b.category === catId);
 
   titleEl.textContent = cat ? cat.name : "Livres";
   renderBooks(filtered);
+
+  // on vide la recherche quand on change de catégorie
+  if (searchInput) {
+    searchInput.value = "";
+  }
 
   section.classList.remove("hidden");
   section.scrollIntoView({ behavior: "smooth" });
@@ -104,7 +113,32 @@ function setupBackButton() {
   });
 }
 
+// 🔍 Recherche dans les livres d'une catégorie
+function setupSearchBooks() {
+  const searchInput = document.getElementById("bookSearchInput");
+  if (!searchInput) return;
+
+  searchInput.addEventListener("input", () => {
+    const q = searchInput.value.toLowerCase().trim();
+
+    if (!currentCategoryId) return;
+
+    const list = books.filter(b => {
+      if (b.category !== currentCategoryId) return false;
+
+      const title = (b.title || "").toLowerCase();
+      const author = (b.author || "").toLowerCase();
+
+      if (!q) return true;
+      return title.includes(q) || author.includes(q);
+    });
+
+    renderBooks(list);
+  });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   loadBooks();
   setupBackButton();
+  setupSearchBooks();
 });
