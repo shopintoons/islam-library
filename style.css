@@ -262,7 +262,11 @@ main {
   border: none;
   background: white;
   border-radius: 12px;
+  overflow: scroll;
+  -webkit-overflow-scrolling: touch; /* indispensable pour iPhone */
+  display: block;
 }
+
 
 /* MENU BAS TYPE APP */
 
