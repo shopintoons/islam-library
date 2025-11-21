@@ -3,6 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <title>Bibliothèque Islam</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0f172a">
+
+  <!-- PWA manifest -->
+  <link rel="manifest" href="manifest.webmanifest">
+
+  <!-- Styles -->
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -11,49 +19,63 @@
       <span class="app-title">Ma Bibliothèque Islamique</span>
     </div>
   </header>
-<!-- LECTEUR PDF INTÉGRÉ -->
-<div id="pdfViewer" class="pdf-viewer hidden">
-  <div class="pdf-header">
-    <button id="closePdf" class="close-btn">Fermer ✖</button>
-  </div>
-
-  <iframe id="pdfFrame" class="pdf-frame"></iframe>
-</div>
 
   <main>
     <!-- SECTION CATÉGORIES -->
-    <section class="categories-wrapper">
+    <section class="categories-wrapper" id="categoriesSection">
       <h1>Catégories d'ouvrages</h1>
       <div id="categoriesContainer" class="categories-grid"></div>
     </section>
 
     <!-- SECTION LIVRES D'UNE CATÉGORIE -->
-<section id="booksSection" class="books-wrapper hidden">
-  <div class="books-header">
-    <button id="backToCategories" class="back-btn">← Catégories</button>
-    <h2 id="booksTitle">Livres</h2>
-  </div>
+    <section id="booksSection" class="books-wrapper hidden">
+      <div class="books-header">
+        <button id="backToCategories" class="back-btn">← Catégories</button>
+        <h2 id="booksTitle">Livres</h2>
+      </div>
 
-  <!-- 🔍 Barre de recherche -->
-  <div class="books-tools">
-    <input
-      id="bookSearchInput"
-      type="text"
-      placeholder="Rechercher un livre ou un auteur..."
-    >
-  </div>
-
-  <div id="booksContainer" class="books-grid"></div>
-</section>
-
+      <!-- 🔍 Barre de recherche -->
+      <div class="books-tools">
+        <input
+          id="bookSearchInput"
+          type="text"
+          placeholder="Rechercher un livre ou un auteur..."
+        >
+      </div>
 
       <div id="booksContainer" class="books-grid"></div>
     </section>
+
+    <!-- SECTION À PROPOS -->
+    <section id="aboutSection" class="about-wrapper">
+      <h2>À propos</h2>
+      <p>
+        Cette application rassemble quelques ouvrages islamiques en langue française
+        (Coran, recueils de hadiths, livres de rappel et d’invocations).
+        Les liens renvoient vers des sites externes. Vérifie toujours les sources
+        et les droits avant de partager ou d’imprimer les documents.
+      </p>
+    </section>
+
+    <!-- LECTEUR PDF INTÉGRÉ -->
+    <div id="pdfViewer" class="pdf-viewer hidden">
+      <div class="pdf-header">
+        <button id="closePdf" class="close-btn">Fermer ✖</button>
+      </div>
+      <iframe id="pdfFrame" class="pdf-frame"></iframe>
+    </div>
   </main>
 
   <footer>
     <p>Les liens renvoient vers des sites externes. Vérifie toujours les sources et les droits avant de partager.</p>
   </footer>
+
+  <!-- MENU BAS TYPE APP -->
+  <nav class="bottom-nav">
+    <button class="nav-btn" data-action="categories">📚 Catégories</button>
+    <button class="nav-btn" data-action="about">ℹ️ À propos</button>
+    <button class="nav-btn" id="installBtn" disabled>📲 Installer l'app</button>
+  </nav>
 
   <script src="app.js"></script>
 </body>
