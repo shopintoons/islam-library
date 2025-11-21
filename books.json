@@ -1,0 +1,72 @@
+[
+  {
+    "id": "coran_1",
+    "title": "Le Noble Coran (traduction des sens)",
+    "author": "Complexe Roi Fahd",
+    "category": "coran",
+    "language": "Français",
+    "format": "PDF",
+    "url": "https://d1.islamhouse.com/data/fr/ih_books/single/fr_Noble_Coran_et_la_traduction_en_langue_francaise.pdf",
+    "cover": "assets/coran1.jpg"
+  },
+  {
+    "id": "livre_riyad",
+    "title": "Riyâd As-Sâlihîn - Les jardins des vertueux",
+    "author": "Imam An-Nawawi",
+    "category": "livres",
+    "language": "Français",
+    "format": "PDF",
+    "url": "https://d1.islamhouse.com/data/fr/ih_books/single/fr-les-jardins-des-vertueux.pdf",
+    "cover": "assets/riyad.jpg"
+  },
+  {
+    "id": "livre_citadelle",
+    "title": "La Citadelle du Musulman",
+    "author": "Sa'îd ibn Ali ibn Wahf Al-Qahtânî",
+    "category": "livres",
+    "language": "Français",
+    "format": "PDF",
+    "url": "https://d1.islamhouse.com/data/fr/ih_books/single/fr_Fortress_of_the_Muslim.pdf",
+    "cover": "assets/citadelle.jpg"
+  },
+  {
+    "id": "livre_bukhari",
+    "title": "Sahîh Al-Boukhârî (page de téléchargement)",
+    "author": "Imam Al-Boukhari",
+    "category": "livres",
+    "language": "Français / Arabe",
+    "format": "Site + PDF",
+    "url": "https://bibliotheque-islamique-coran-sunna.over-blog.com/article-telecharger-sahih-al-boukhari-par-l-imam-al-boukhari-complet-tome-1-2-3-et-4-pdf-word-doc-74425131.html",
+    "cover": "assets/bukhari.jpg"
+  },
+  {
+    "id": "livre_muslim",
+    "title": "Sahîh Muslim (page de téléchargement)",
+    "author": "Imam Muslim",
+    "category": "livres",
+    "language": "Français / Arabe",
+    "format": "Site + PDF",
+    "url": "https://bibliotheque-islamique-coran-sunna.over-blog.com/article-telecharger-l-authentique-de-mouslim-sahih-muslim-par-l-imam-mouslim-pdf-word-doc-76499896.html",
+    "cover": "assets/muslim.jpg"
+  },
+  {
+    "id": "doua_1",
+    "title": "Invocations et formules d'éloge destinées à Allah",
+    "author": "Abdullah Ibn Hamoud Al-Fourayh",
+    "category": "doua",
+    "language": "Français",
+    "format": "PDF",
+    "url": "https://d1.islamhouse.com/data/fr/ih_books/single/fr-invocations-et-formules-deloge-destinees-a-allah.pdf",
+    "cover": "assets/doua1.jpg"
+  },
+  {
+    "id": "doua_2",
+    "title": "Recueil d'invocations (Coran et Sunna)",
+    "author": "—",
+    "category": "doua",
+    "language": "Français",
+    "format": "PDF",
+    "url": "https://d1.islamhouse.com/data/fr/ih_books/single/fr_Mosques_pray.pdf",
+    "cover": "assets/doua2.jpg"
+  }
+]

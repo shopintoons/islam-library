@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Bibliothèque Islam</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top-header">
+    <div class="top-left">
+      <span class="app-title">Ma Bibliothèque Islamique</span>
+    </div>
+  </header>
+
+  <main>
+    <!-- SECTION CATÉGORIES -->
+    <section class="categories-wrapper">
+      <h1>Catégories d'ouvrages</h1>
+      <div id="categoriesContainer" class="categories-grid"></div>
+    </section>
+
+    <!-- SECTION LIVRES D'UNE CATÉGORIE -->
+    <section id="booksSection" class="books-wrapper hidden">
+      <div class="books-header">
+        <button id="backToCategories" class="back-btn">← Catégories</button>
+        <h2 id="booksTitle">Livres</h2>
+      </div>
+
+      <div id="booksContainer" class="books-grid"></div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Les liens renvoient vers des sites externes. Vérifie toujours les sources et les droits avant de partager.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
