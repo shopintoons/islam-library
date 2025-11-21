@@ -94,7 +94,8 @@ function renderBooks(list) {
         <div>Langue : ${book.language || "-"}</div>
         <div>Format : ${book.format || "-"}</div>
       </div>
-      <a href="${book.url}" target="_blank" rel="noopener noreferrer">📖 Ouvrir le livre</a>
+      <a href="#" onclick="openPdf('${book.url}')">📖 Ouvrir le livre</a>
+
     `;
 
     container.appendChild(div);
