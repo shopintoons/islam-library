@@ -142,3 +142,20 @@ document.addEventListener("DOMContentLoaded", () => {
   setupBackButton();
   setupSearchBooks();
 });
+// === OUVERTURE DU PDF DANS LE LECTEUR INTÉGRÉ ===
+function openPdf(url) {
+  const viewer = document.getElementById("pdfViewer");
+  const frame = document.getElementById("pdfFrame");
+
+  frame.src = url;
+  viewer.classList.remove("hidden");
+}
+
+// === FERMETURE DU LECTEUR PDF ===
+document.getElementById("closePdf").addEventListener("click", () => {
+  const viewer = document.getElementById("pdfViewer");
+  const frame = document.getElementById("pdfFrame");
+
+  frame.src = "";
+  viewer.classList.add("hidden");
+});
