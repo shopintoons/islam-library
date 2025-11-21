@@ -1,5 +1,6 @@
 let books = [];
 let currentCategoryId = null;
+let deferredInstallPrompt = null;
 
 // Tes 3 catégories
 const categories = [
@@ -46,7 +47,7 @@ function renderCategories() {
   });
 }
 
-// Ouvrir une catégorie : afficher les livres dessous
+// Ouvrir une catégorie
 function openCategory(catId) {
   currentCategoryId = catId;
 
@@ -55,12 +56,11 @@ function openCategory(catId) {
   const titleEl = document.getElementById("booksTitle");
   const searchInput = document.getElementById("bookSearchInput");
 
-  const filtered = books.filter(b => b.category === catId);
+  const list = books.filter(b => b.category === catId);
 
   titleEl.textContent = cat ? cat.name : "Livres";
-  renderBooks(filtered);
+  renderBooks(list);
 
-  // on vide la recherche quand on change de catégorie
   if (searchInput) {
     searchInput.value = "";
   }
@@ -86,17 +86,26 @@ function renderBooks(list) {
     const coverSrc = book.cover || "assets/default-cover.jpg";
 
     div.innerHTML = `
-      <img src="${coverSrc}" class="book-cover" onclick="openPdf('${book.url}')">
-
+      <img src="${coverSrc}" alt="Couverture de ${book.title}" class="book-cover">
       <h3>${book.title}</h3>
       <div class="book-meta">
         <div>Auteur : ${book.author || "Inconnu"}</div>
         <div>Langue : ${book.language || "-"}</div>
         <div>Format : ${book.format || "-"}</div>
       </div>
-      <a href="#" onclick="openPdf('${book.url}')">📖 Ouvrir le livre</a>
-
+      <a href="#" class="open-book">📖 Ouvrir le livre</a>
     `;
+
+    const img = div.querySelector(".book-cover");
+    const link = div.querySelector(".open-book");
+
+    const handler = (e) => {
+      e.preventDefault();
+      openPdf(book.url);
+    };
+
+    if (img)  img.addEventListener("click", handler);
+    if (link) link.addEventListener("click", handler);
 
     container.appendChild(div);
   });
@@ -107,13 +116,15 @@ function setupBackButton() {
   const btn = document.getElementById("backToCategories");
   const section = document.getElementById("booksSection");
 
+  if (!btn || !section) return;
+
   btn.addEventListener("click", () => {
     section.classList.add("hidden");
     window.scrollTo({ top: 0, behavior: "smooth" });
   });
 }
 
-// 🔍 Recherche dans les livres d'une catégorie
+// Recherche dans les livres d'une catégorie
 function setupSearchBooks() {
   const searchInput = document.getElementById("bookSearchInput");
   if (!searchInput) return;
@@ -137,25 +148,101 @@ function setupSearchBooks() {
   });
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  loadBooks();
-  setupBackButton();
-  setupSearchBooks();
-});
-// === OUVERTURE DU PDF DANS LE LECTEUR INTÉGRÉ ===
+// === LECTEUR PDF ===
 function openPdf(url) {
   const viewer = document.getElementById("pdfViewer");
   const frame = document.getElementById("pdfFrame");
+
+  // Fallback : si pas de viewer, ouvrir dans un nouvel onglet
+  if (!viewer || !frame) {
+    window.open(url, "_blank");
+    return;
+  }
 
   frame.src = url;
   viewer.classList.remove("hidden");
 }
 
-// === FERMETURE DU LECTEUR PDF ===
-document.getElementById("closePdf").addEventListener("click", () => {
+function setupPdfClose() {
+  const btn = document.getElementById("closePdf");
   const viewer = document.getElementById("pdfViewer");
   const frame = document.getElementById("pdfFrame");
 
-  frame.src = "";
-  viewer.classList.add("hidden");
+  if (!btn || !viewer || !frame) return;
+
+  btn.addEventListener("click", () => {
+    frame.src = "";
+    viewer.classList.add("hidden");
+  });
+}
+
+// === MENU DU BAS ===
+function setupBottomNav() {
+  const buttons = document.querySelectorAll(".bottom-nav .nav-btn");
+  const categoriesSection = document.getElementById("categoriesSection");
+  const aboutSection = document.getElementById("aboutSection");
+
+  buttons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      const action = btn.dataset.action;
+
+      buttons.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+
+      if (action === "categories" && categoriesSection) {
+        categoriesSection.scrollIntoView({ behavior: "smooth" });
+      } else if (action === "about" && aboutSection) {
+        aboutSection.scrollIntoView({ behavior: "smooth" });
+      }
+    });
+  });
+
+  // activer Catégories par défaut
+  const first = document.querySelector('.bottom-nav .nav-btn[data-action="categories"]');
+  if (first) first.classList.add("active");
+}
+
+// === PWA : INSTALLATION ===
+function setupPwaInstall() {
+  const installBtn = document.getElementById("installBtn");
+  if (!installBtn) return;
+
+  // On attend l'événement beforeinstallprompt
+  window.addEventListener("beforeinstallprompt", (e) => {
+    e.preventDefault();
+    deferredInstallPrompt = e;
+    installBtn.disabled = false;
+  });
+
+  installBtn.addEventListener("click", async () => {
+    if (!deferredInstallPrompt) return;
+
+    deferredInstallPrompt.prompt();
+    const { outcome } = await deferredInstallPrompt.userChoice;
+    console.log("Résultat installation PWA :", outcome);
+    deferredInstallPrompt = null;
+    installBtn.disabled = true;
+  });
+}
+
+// === PWA : SERVICE WORKER ===
+function setupServiceWorker() {
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker
+        .register("service-worker.js")
+        .then(() => console.log("Service worker enregistré"))
+        .catch(err => console.error("Erreur SW:", err));
+    });
+  }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  loadBooks();
+  setupBackButton();
+  setupSearchBooks();
+  setupPdfClose();
+  setupBottomNav();
+  setupPwaInstall();
+  setupServiceWorker();
 });
