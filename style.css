@@ -7,6 +7,7 @@ body {
   margin: 0;
   background: #f5f7fb;
   color: #111827;
+  padding-bottom: 70px; /* pour laisser la place au menu du bas */
 }
 
 /* HEADER */
@@ -131,6 +132,26 @@ main {
   font-size: 1.1rem;
 }
 
+/* barre de recherche des livres */
+.books-tools {
+  margin-bottom: 12px;
+}
+
+.books-tools input {
+  width: 100%;
+  max-width: 360px;
+  padding: 8px 10px;
+  border-radius: 999px;
+  border: 1px solid #d1d5db;
+  font-size: 0.9rem;
+  outline: none;
+}
+
+.books-tools input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px rgba(37,99,235,0.12);
+}
+
 /* CARDS LIVRES (grille) */
 
 .books-grid {
@@ -184,37 +205,17 @@ main {
   text-decoration: underline;
 }
 
-/* UTILITAIRE */
+/* À PROPOS */
 
-.hidden {
-  display: none;
-}
-
-footer {
-  text-align: center;
-  font-size: 0.75rem;
-  color: #6b7280;
-  padding: 16px 0 24px;
-}
-.books-tools {
-  margin-bottom: 12px;
+.about-wrapper {
+  margin-top: 32px;
+  padding: 16px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(15,23,42,0.08);
 }
 
-.books-tools input {
-  width: 100%;
-  max-width: 360px;
-  padding: 8px 10px;
-  border-radius: 999px;
-  border: 1px solid #d1d5db;
-  font-size: 0.9rem;
-  outline: none;
-}
-
-.books-tools input:focus {
-  border-color: #2563eb;
-  box-shadow: 0 0 0 2px rgba(37,99,235,0.12);
-}
-/* === LECTEUR PDF === */
+/* LECTEUR PDF */
 
 .pdf-viewer {
   position: fixed;
@@ -261,4 +262,54 @@ footer {
   border: none;
   background: white;
   border-radius: 12px;
+}
+
+/* MENU BAS TYPE APP */
+
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: #0f172a;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0 8px;
+  z-index: 20;
+}
+
+.nav-btn {
+  flex: 1;
+  margin: 0 4px;
+  border: none;
+  border-radius: 999px;
+  padding: 8px 4px;
+  font-size: 0.8rem;
+  color: #e5e7eb;
+  background: transparent;
+  cursor: pointer;
+}
+
+.nav-btn:hover {
+  background: rgba(255,255,255,0.08);
+}
+
+.nav-btn.active {
+  background: #2563eb;
+  color: #ffffff;
+}
+
+/* UTILITAIRE */
+
+.hidden {
+  display: none;
+}
+
+footer {
+  text-align: center;
+  font-size: 0.75rem;
+  color: #6b7280;
+  padding: 16px 0 80px;
 }
