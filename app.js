@@ -86,9 +86,8 @@ function renderBooks(list) {
     const coverSrc = book.cover || "assets/default-cover.jpg";
 
     div.innerHTML = `
-      <a href="${book.url}" target="_blank" rel="noopener noreferrer">
-        <img src="${coverSrc}" alt="Couverture de ${book.title}" class="book-cover">
-      </a>
+      <img src="${coverSrc}" class="book-cover" onclick="openPdf('${book.url}')">
+
       <h3>${book.title}</h3>
       <div class="book-meta">
         <div>Auteur : ${book.author || "Inconnu"}</div>
