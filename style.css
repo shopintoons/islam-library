@@ -317,3 +317,7 @@ footer {
   color: #6b7280;
   padding: 16px 0 80px;
 }
+.pdf-viewer iframe {
+  overflow: scroll !important;
+  -webkit-overflow-scrolling: touch !important;
+}
