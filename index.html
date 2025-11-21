@@ -20,11 +20,24 @@
     </section>
 
     <!-- SECTION LIVRES D'UNE CATÉGORIE -->
-    <section id="booksSection" class="books-wrapper hidden">
-      <div class="books-header">
-        <button id="backToCategories" class="back-btn">← Catégories</button>
-        <h2 id="booksTitle">Livres</h2>
-      </div>
+<section id="booksSection" class="books-wrapper hidden">
+  <div class="books-header">
+    <button id="backToCategories" class="back-btn">← Catégories</button>
+    <h2 id="booksTitle">Livres</h2>
+  </div>
+
+  <!-- 🔍 Barre de recherche -->
+  <div class="books-tools">
+    <input
+      id="bookSearchInput"
+      type="text"
+      placeholder="Rechercher un livre ou un auteur..."
+    >
+  </div>
+
+  <div id="booksContainer" class="books-grid"></div>
+</section>
+
 
       <div id="booksContainer" class="books-grid"></div>
     </section>
