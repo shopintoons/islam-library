@@ -149,11 +149,20 @@ function setupSearchBooks() {
 }
 
 // === LECTEUR PDF ===
+// === LECTEUR PDF ===
 function openPdf(url) {
+  const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+  // 📱 Sur mobile : ouvrir directement dans un nouvel onglet (lecteur natif)
+  if (isMobile) {
+    window.open(url, "_blank");
+    return;
+  }
+
+  // 💻 Sur ordinateur : utiliser le lecteur intégré
   const viewer = document.getElementById("pdfViewer");
   const frame = document.getElementById("pdfFrame");
 
-  // Fallback : si pas de viewer, ouvrir dans un nouvel onglet
   if (!viewer || !frame) {
     window.open(url, "_blank");
     return;
